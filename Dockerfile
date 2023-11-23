@@ -16,8 +16,5 @@ EXPOSE 80 443
 # Copy the entrypoint script
 COPY entrypoint.sh /entrypoint.sh
 
-# Set execute permissions for the entrypoint script
-RUN chmod +x /entrypoint.sh
-
 # Run the entrypoint script
 ENTRYPOINT ["/entrypoint.sh"]

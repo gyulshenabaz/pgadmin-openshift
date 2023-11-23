@@ -9,6 +9,10 @@ COPY entrypoint.sh /entrypoint.sh
 # Set execute permissions for the entrypoint script
 RUN chmod +x /entrypoint.sh
 
+# Install Python 3 and pip
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip
+
 # Adjust ownership of the necessary directories and files
 RUN chown -R 1001:0 /pgadmin4 /var/lib/pgadmin && \
     chmod -R g=u /pgadmin4 /var/lib/pgadmin && \

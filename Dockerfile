@@ -6,6 +6,8 @@ USER root
 # Copy the entrypoint script
 COPY entrypoint.sh /entrypoint.sh
 
+# Install Python if not already installed
+RUN yum install -y python3
 
 # Set execute permissions for the entrypoint script
 RUN chmod +x /entrypoint.sh

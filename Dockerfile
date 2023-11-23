@@ -6,17 +6,15 @@ USER root
 # Copy the entrypoint script
 COPY entrypoint.sh /entrypoint.sh
 
-# Install Python if not already installed
-RUN yum install -y python3
-
 # Set execute permissions for the entrypoint script
 RUN chmod +x /entrypoint.sh
 
 # Adjust ownership of the necessary directories and files
 RUN chown -R 1001:0 /pgadmin4 /var/lib/pgadmin && \
     chmod -R g=u /pgadmin4 /var/lib/pgadmin && \
-    chmod -R g=u /pgadmin4 /entrypoint.sh
-
+    chmod -R g=u /pgadmin4 /entrypoint.sh && \
+    chmod -R g=u /pgadmin4 /venv/bin/python3 && \
+    chmod -R g=u /pgadmin4 /venv/bin/gunicorn
 
 # Switch back to non-root user
 USER 1001
